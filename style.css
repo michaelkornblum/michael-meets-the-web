@@ -8,6 +8,10 @@
 
 /* base styles */
 
+.container {
+  overflow: hidden;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
@@ -90,6 +94,11 @@ dt {
   margin: 0 .75rem;
 }
 
+#menu-button:focus {
+  outline: none;
+}
+
+
 #menu-button svg:hover {
   cursor: pointer;
 }
@@ -102,36 +111,40 @@ dt {
 
 .site-navigation-hidden {
   position: absolute;
-  width: 100%;
-  height: 100vh;
   top: 6rem;
-  transform: translateX(100%);
-  transition: transform 0.6s ease;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.6s ease;
 }
 
 .site-navigation-open {
-  transform: translateX(0);
+  max-height: 100vh;
+  padding-bottom: 1rem;
 }
 
 .site-navigation ul {
   list-style-type: none;
+  margin-top: 1rem;
 }
 
 .site-navigation a {
   box-sizing: border-box;
   color: #ff9900;
   display: block;
-  padding: 1.5rem 0;
+  /*padding: 1.5rem 0;*/
+  margin: 2rem 0;
   padding-left: 1.75rem;
   font-size: 1.25rem;
   text-decoration: none;
   font-family: raleway;
   font-weight: bold;
+  /*bring up to 100% @next query; */
+  width: 7.5rem;
 }
 
 .site-navigation a:hover {
-  color: #333;
-  background-color: #fff;
+  text-decoration: underline;
 }
 
 /* hero styles */
@@ -310,13 +323,23 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-top: 0;
   }
 
   .site-navigation a {
+    width: 100%;
+    padding: 1.5rem 0;
     margin: 0;
     padding-left: 0;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  .site-navigation a:hover {
+    width: 100%;
+    background-color: white;
+    color: #333;
+    text-decoration: none;
   }
 
   article.full-width h1 {
@@ -345,6 +368,10 @@ footer {
     height: 55vh;
   }
 
+  .hero-text {
+    font-size: 3rem;
+  }
+
 }
 
 @media (min-width: 1024px) {
@@ -352,7 +379,7 @@ footer {
     flex-direction: row;
     justify-content: space-between;
     height: 3.5rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
   }
 
   .branding {
@@ -369,6 +396,10 @@ footer {
   .hero {
     height: 75vh;
   }
+
+  .cards-extended {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -377,7 +408,17 @@ footer {
     margin-bottom: 0;
   }
 
+  .cards-extended {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1rem;
+  }
+
   article.full-width {
     margin-bottom: 2rem;
+  }
+
+  .card:nth-child(4) .card-links {
+    position: relative;
+    top: .25rem;
   }
 }
